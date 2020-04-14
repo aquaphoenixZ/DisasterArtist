@@ -44,7 +44,7 @@
             android:id="@+id/sorry_face"
             android:enabled="true"
             android:icon="@drawable/ic_favorite_black_24dp"
-            android:title="I'm sorry c:" />
+            android:title="Me too c:" />
     </group>
 
 

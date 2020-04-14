@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(this, MainActivity.class));
                 break;
             case R.id.sorry_face:
-                Toast.makeText(this, "Sorry for the trouble, kisses", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "yo tambien", Toast.LENGTH_SHORT).show();
                 break;
         }
 

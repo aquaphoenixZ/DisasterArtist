@@ -7,4 +7,6 @@
     <string name="maps_text">Maps</string>
     <string name="news_text">News</string>
     <string name="setting_text">Settings</string>
+    <string name="home_text">Home</string>
+    <string name="dark_mode_text">Dark Mode</string>
 </resources>

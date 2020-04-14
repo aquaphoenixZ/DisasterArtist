@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_View">
 
@@ -8,6 +9,12 @@
         android:enabled="true"
         android:menuCategory="system"
         android:visible="true">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="?attr/homeAsUpIndicator"
+            android:title="@string/home_text"
+            android:visible="false"
+            app:showAsAction="always" />
         <item
             android:id="@+id/nav_tools"
             android:icon="@drawable/ic_build_black_24dp"
@@ -24,6 +31,10 @@
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings_black_24dp"
             android:title="@string/setting_text" />
+        <item
+            android:id="@+id/dark_mode_switch"
+            android:title="@string/dark_mode_text"
+            app:actionLayout="@layout/switch_item" />
     </group>
 
 

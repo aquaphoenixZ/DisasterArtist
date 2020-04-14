@@ -56,10 +56,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
-        if(id == R.id.nav_news){
-            Toast.makeText(this, "News", Toast.LENGTH_SHORT).show();
-            Intent news = new Intent(this, NewsActivity.class);
-            startActivity(news);
+        switch(id){
+            case R.id.nav_news:
+                Toast.makeText(this, "News", Toast.LENGTH_SHORT).show();
+                Intent news = new Intent(this, NewsActivity.class);
+                startActivity(news);
+                break;
+            case R.id.nav_home:
+                Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, MainActivity.class));
+                break;
         }
 
         return true;

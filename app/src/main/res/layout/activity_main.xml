@@ -11,10 +11,13 @@
     android:background="@color/colorBackground"
     tools:openDrawer="start">
 
-    <include
-        layout="@layout/app_bar_main"
+
+
+    <include layout = "@layout/content_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
@@ -39,6 +42,11 @@
         </LinearLayout>
 
     </com.google.android.material.navigation.NavigationView>
+
+    <include
+        layout="@layout/app_bar_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

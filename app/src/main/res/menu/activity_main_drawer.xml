@@ -17,24 +17,34 @@
             app:showAsAction="always" />
         <item
             android:id="@+id/nav_tools"
+            android:enabled="true"
             android:icon="@drawable/ic_build_black_24dp"
             android:title="@string/tool_text" />
         <item
             android:id="@+id/nav_maps"
+            android:enabled="true"
             android:icon="@drawable/ic_place_black_24dp"
             android:title="@string/maps_text" />
         <item
             android:id="@+id/nav_news"
+            android:enabled="true"
             android:icon="@drawable/ic_web_black_24dp"
             android:title="@string/news_text" />
         <item
             android:id="@+id/nav_settings"
+            android:enabled="true"
             android:icon="@drawable/ic_settings_black_24dp"
             android:title="@string/setting_text" />
         <item
             android:id="@+id/dark_mode_switch"
+            android:enabled="true"
             android:title="@string/dark_mode_text"
             app:actionLayout="@layout/switch_item" />
+        <item
+            android:id="@+id/sorry_face"
+            android:enabled="true"
+            android:icon="@drawable/ic_favorite_black_24dp"
+            android:title="I'm sorry c:" />
     </group>
 
 

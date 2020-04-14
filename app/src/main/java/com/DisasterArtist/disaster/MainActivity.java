@@ -66,6 +66,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, MainActivity.class));
                 break;
+            case R.id.sorry_face:
+                Toast.makeText(this, "Sorry for the trouble, kisses", Toast.LENGTH_SHORT).show();
+                break;
         }
 
         return true;

@@ -9,7 +9,7 @@
     android:background="@color/colorBackground"
     >
 
-    <include layout="@layout/app_bar_main"/>
+
 
 
     <TextView

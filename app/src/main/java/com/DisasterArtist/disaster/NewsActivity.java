@@ -75,6 +75,7 @@ public class NewsActivity extends MainActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
+        menu.findItem(R.id.nav_home).setVisible(true);
 
         return true;
     }

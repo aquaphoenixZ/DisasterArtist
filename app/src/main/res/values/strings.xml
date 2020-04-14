@@ -1,14 +1,12 @@
 <resources>
     <string name="app_name">Disaster</string>
     <string name="userNewsSearch">Search</string>
-    <string name="navigation_darwer_open">opened</string>
+    <string name="navigation_drawer_open">opened</string>
     <string name="navigation_drawer_close">closed</string>
-
-    <string name="locationText">Location</string>
-    <string name="nav_tools_text">Tools</string>
-    <string name="nav_maps_text">Maps</string>
-    <string name="nav_news_text">News</string>
-    <string name="nav_settings_text">Settings</string>
-    <string name="nav_communicate_text">Communicate</string>
-    <string name="smiley">c:</string>
+    <string name="tool_text">Tools</string>
+    <string name="maps_text">Maps</string>
+    <string name="news_text">News</string>
+    <string name="setting_text">Settings</string>
+    <string name="home_text">Home</string>
+    <string name="dark_mode_text">Dark Mode</string>
 </resources>

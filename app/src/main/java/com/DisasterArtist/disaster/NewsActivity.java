@@ -2,9 +2,15 @@ package com.DisasterArtist.disaster;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,12 +20,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class NewsActivity extends AppCompatActivity {
+public class NewsActivity extends MainActivity {
     private RecyclerView recView;
     private RecyclerView.Adapter recAdapter;
     private RecyclerView.LayoutManager  recLayMan;
@@ -63,15 +70,23 @@ public class NewsActivity extends AppCompatActivity {
 
 
         requestQueue.add(jsonObjectRequest);
-
-
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
+
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.news_text);
+        setSupportActionBar(toolbar);
 
         recView = (RecyclerView) findViewById(R.id.news_recyclerView);
         recLayMan = new GridLayoutManager(this, 1, RecyclerView.VERTICAL, false);

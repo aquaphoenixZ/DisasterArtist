@@ -3,37 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_View">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:checkableBehavior="none"
+        android:enabled="true"
+        android:menuCategory="system"
+        android:visible="true">
         <item
             android:id="@+id/nav_tools"
-            android:title="Tools"
             android:icon="@drawable/ic_build_black_24dp"
-            />
+            android:title="@string/tool_text" />
         <item
             android:id="@+id/nav_maps"
-            android:title="Maps"
             android:icon="@drawable/ic_place_black_24dp"
-            />
+            android:title="@string/maps_text" />
         <item
             android:id="@+id/nav_news"
-            android:title="News"
             android:icon="@drawable/ic_web_black_24dp"
-            />
+            android:title="@string/news_text" />
         <item
             android:id="@+id/nav_settings"
-            android:title="Settings"
             android:icon="@drawable/ic_settings_black_24dp"
-            />
+            android:title="@string/setting_text" />
     </group>
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_favorite_black_24dp"
-                android:title="c:"/>
-        </menu>
-    </item>
 
 
 </menu>

@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Disaster</string>
     <string name="userNewsSearch">Search</string>
-    <string name="navigation_darwer_open">opened</string>
+    <string name="navigation_drawer_open">opened</string>
     <string name="navigation_drawer_close">closed</string>
+    <string name="tool_text">Tools</string>
+    <string name="maps_text">Maps</string>
+    <string name="news_text">News</string>
+    <string name="setting_text">Settings</string>
 </resources>

@@ -7,7 +7,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -25,25 +24,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Navigation Drawer
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_darwer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
-        //Search bar
-        Intent intent = getIntent();
-        if(Intent.ACTION_SEARCH.equals(intent.getAction())){
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            //doMySearch(query);
-        }
     }
 
     @Override
@@ -59,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
+        //getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
         return true;
     }
 
@@ -76,19 +66,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item){
         int id = item.getItemId();
-        if(id == R.id.nav_settings){
-            Toast.makeText(this, "settings", Toast.LENGTH_SHORT).show();
-        }
-        else if(id == R.id.nav_maps){
-            Toast.makeText(this, "maps", Toast.LENGTH_SHORT).show();
-        }
-        else if(id == R.id.nav_news){
-            Toast.makeText(this, "news", Toast.LENGTH_SHORT).show();
-        }
-        else if(id == R.id.nav_tools){
-            Toast.makeText(this, "tools", Toast.LENGTH_SHORT).show();
-        }
 
+        if(id == R.id.nav_news){
+            Toast.makeText(this, "News", Toast.LENGTH_SHORT).show();
+            Intent news = new Intent(this, NewsActivity.class);
+            startActivity(news);
+        }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

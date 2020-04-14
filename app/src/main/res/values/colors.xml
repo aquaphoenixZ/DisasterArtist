@@ -4,4 +4,12 @@
     <color name="colorPrimaryDark">	#8b4513</color>
     <color name="colorAccent">#800080</color>
     <color name="colorBackground">#EAB88D</color>
+    <color name="colorNavWBar">#e8c09f</color>
+    <color name="colorPrimaryLight">#d17a52</color>
+    <color name="colorPrimaryLighter">#e6916a</color>
+    <color name="colorNavFooter">#b52f22</color>
+    <color name="colorNavFooterDarker">#ab271b</color>
+
+
+
 </resources>

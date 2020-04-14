@@ -10,5 +10,11 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     >
 
+    <TextView
+        android:id="@+id/weatherTextview"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text=""
+        android:background="@color/colorNavWBar"/>
 
 </LinearLayout>

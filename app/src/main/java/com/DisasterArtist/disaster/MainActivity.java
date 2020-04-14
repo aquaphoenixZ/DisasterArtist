@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Navigation Drawer
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -34,6 +36,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        //Search bar
+        Intent intent = getIntent();
+        if(Intent.ACTION_SEARCH.equals(intent.getAction())){
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            //doMySearch(query);
+        }
     }
 
     @Override
@@ -66,12 +76,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item){
         int id = item.getItemId();
-        if(id == R.id.nav_camera){
-            Toast.makeText(this, "camera", Toast.LENGTH_SHORT).show();
+        if(id == R.id.nav_settings){
+            Toast.makeText(this, "settings", Toast.LENGTH_SHORT).show();
         }
-        else if(id == R.id.nav_share){
-            Toast.makeText(this, "share", Toast.LENGTH_SHORT).show();
+        else if(id == R.id.nav_maps){
+            Toast.makeText(this, "maps", Toast.LENGTH_SHORT).show();
         }
+        else if(id == R.id.nav_news){
+            Toast.makeText(this, "news", Toast.LENGTH_SHORT).show();
+        }
+        else if(id == R.id.nav_tools){
+            Toast.makeText(this, "tools", Toast.LENGTH_SHORT).show();
+        }
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

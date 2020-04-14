@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
+        super.onOptionsItemSelected(item);
+
         int id = item.getItemId();
         switch(id){
             case R.id.nav_news:
@@ -77,9 +79,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item){
-        int id = item.getItemId();
-        onOptionsItemSelected(item);
 
+        onOptionsItemSelected(item);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

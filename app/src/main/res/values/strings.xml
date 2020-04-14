@@ -10,4 +10,12 @@
     <string name="home_text">Home</string>
     <string name="dark_mode_text">Dark Mode</string>
     <string name="location_text">Location</string>
+    <string name="android_txt">Android</string>
+    <string name="pandemic_txt">Pandemic</string>
+    <string name="landslide_txt">Landslide</string>
+    <string name="earthquake_txt">Earthquake</string>
+    <string name="thunderstorm_txt">Thunderstorm</string>
+    <string name="nuclear_txt">"Nuclear "</string>
+    <string name="fire_txt">Fire</string>
+    <string name="flood_txt">Floods</string>
 </resources>

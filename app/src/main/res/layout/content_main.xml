@@ -10,8 +10,6 @@
     >
 
 
-
-
     <TextView
         android:id="@+id/locationTextView"
         android:layout_width="100dp"
@@ -30,19 +28,25 @@
 
     <ImageButton
         android:id="@+id/floodImageButton"
-        android:layout_width="120dp"
-        android:layout_height="90dp"
+        android:layout_width="135dp"
+        android:layout_height="75dp"
+        android:background="@drawable/floods"
+        android:contentDescription="@string/flood_txt"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.213"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.244" />
+        app:layout_constraintVertical_bias="0.243" />
 
     <ImageButton
         android:id="@+id/wildfireImageButton"
-        android:layout_width="120dp"
-        android:layout_height="90dp"
+        android:layout_width="135dp"
+        android:layout_height="75dp"
+        android:background="@drawable/firewild"
+        android:contentDescription="@string/fire_txt"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.756"
@@ -52,8 +56,11 @@
 
     <ImageButton
         android:id="@+id/nuclearImageButton"
-        android:layout_width="120dp"
-        android:layout_height="90dp"
+        android:layout_width="135dp"
+        android:layout_height="75dp"
+        android:background="@drawable/nuklear"
+        android:contentDescription="@string/nuclear_txt"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.213"
@@ -63,8 +70,11 @@
 
     <ImageButton
         android:id="@+id/thunderStormImageButton"
-        android:layout_width="120dp"
-        android:layout_height="90dp"
+        android:layout_width="135dp"
+        android:layout_height="75dp"
+        android:background="@drawable/thunderstorm"
+        android:contentDescription="@string/thunderstorm_txt"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.756"
@@ -74,8 +84,11 @@
 
     <ImageButton
         android:id="@+id/earthquakeImageButton"
-        android:layout_width="120dp"
-        android:layout_height="90dp"
+        android:layout_width="135dp"
+        android:layout_height="75dp"
+        android:background="@drawable/quake"
+        android:contentDescription="@string/earthquake_txt"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.213"
@@ -85,8 +98,11 @@
 
     <ImageButton
         android:id="@+id/landslideImageButton"
-        android:layout_width="120dp"
-        android:layout_height="90dp"
+        android:layout_width="135dp"
+        android:layout_height="75dp"
+        android:background="@drawable/landsilepic"
+        android:contentDescription="@string/landslide_txt"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.756"
@@ -95,9 +111,12 @@
         app:layout_constraintVertical_bias="0.623" />
 
     <ImageButton
-        android:id="@+id/zombiesImageButton"
-        android:layout_width="120dp"
-        android:layout_height="90dp"
+        android:id="@+id/pandemicImageButton"
+        android:layout_width="135dp"
+        android:layout_height="75dp"
+        android:background="@drawable/pandemic"
+        android:contentDescription="@string/pandemic_txt"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.213"
@@ -107,8 +126,11 @@
 
     <ImageButton
         android:id="@+id/androidH20ImageButton"
-        android:layout_width="120dp"
-        android:layout_height="90dp"
+        android:layout_width="135dp"
+        android:layout_height="75dp"
+        android:background="@drawable/vanier_android"
+        android:contentDescription="@string/android_txt"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.756"

@@ -3,4 +3,12 @@
     <string name="userNewsSearch">Search</string>
     <string name="navigation_darwer_open">opened</string>
     <string name="navigation_drawer_close">closed</string>
+
+    <string name="locationText">Location</string>
+    <string name="nav_tools_text">Tools</string>
+    <string name="nav_maps_text">Maps</string>
+    <string name="nav_news_text">News</string>
+    <string name="nav_settings_text">Settings</string>
+    <string name="nav_communicate_text">Communicate</string>
+    <string name="smiley">c:</string>
 </resources>

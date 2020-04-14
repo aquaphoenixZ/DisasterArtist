@@ -56,22 +56,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
-        if(id == R.id.action_settings){
-            return true;
+        if(id == R.id.nav_news){
+            Toast.makeText(this, "News", Toast.LENGTH_SHORT).show();
+            Intent news = new Intent(this, NewsActivity.class);
+            startActivity(news);
         }
-        return super .onOptionsItemSelected(item);
+
+        return true;
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item){
         int id = item.getItemId();
+        onOptionsItemSelected(item);
 
-        if(id == R.id.nav_news){
-            Toast.makeText(this, "News", Toast.LENGTH_SHORT).show();
-            Intent news = new Intent(this, NewsActivity.class);
-            startActivity(news);
-        }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

@@ -8,22 +8,33 @@
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            app:popupTheme="@style/AppTheme"
-            />
-
-
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:layout_anchor="@+id/appBarLayout"
+        app:layout_anchorGravity="left"
+        app:popupTheme="@style/AppTheme" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="68dp"
+        android:layout_height="?attr/actionBarSize"
+        android:backgroundTint="@color/colorPrimary"
+        android:scaleType="center"
+        android:tint="#E60707"
+        app:layout_anchor="@+id/toolbar"
+        app:layout_anchorGravity="right"
+        app:srcCompat="@android:drawable/stat_sys_warning" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

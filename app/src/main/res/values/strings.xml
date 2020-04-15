@@ -18,4 +18,11 @@
     <string name="nuclear_txt">"Nuclear "</string>
     <string name="fire_txt">Fire</string>
     <string name="flood_txt">Floods</string>
+    <string name="dialog_name">Name</string>
+    <string name="dialog_panic_info">Panic Info</string>
+    <string name="dialog_phone_number">Phone number</string>
+    <string name="dialog_address">Address</string>
+    <string name="dialog_submit">Submit</string>
+    <string name="dialog_header_content_descritpion">The header</string>
+    <string name="panic_button">Panic button</string>
 </resources>

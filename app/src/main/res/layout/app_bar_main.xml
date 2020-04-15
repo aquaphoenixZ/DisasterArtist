@@ -26,10 +26,11 @@
         app:popupTheme="@style/AppTheme" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/main_panic_button"
         android:layout_width="68dp"
         android:layout_height="?attr/actionBarSize"
         android:backgroundTint="@color/colorPrimary"
+        android:contentDescription="@string/panic_button"
         android:scaleType="center"
         android:tint="#E60707"
         app:layout_anchor="@+id/toolbar"

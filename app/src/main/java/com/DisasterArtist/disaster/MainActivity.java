@@ -9,15 +9,19 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private ImageButton mainPanicButton;
+    private ImageButton menuPanicButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        mainPanicButton = findViewById(R.id.main_panic_button);
+        mainPanicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Test","Dialog opened");
+                PanicDialog dialog = new PanicDialog();
+                dialog.show(getSupportFragmentManager(),"PanicDialog");
+            }
+        });
+
+        mainPanicButton = findViewById(R.id.menu_panic_button);
+        mainPanicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Test","Dialog opened");
+                PanicDialog dialog = new PanicDialog();
+                dialog.show(getSupportFragmentManager(),"PanicDialog");
+            }
+        });
+
+
     }
 
     @Override

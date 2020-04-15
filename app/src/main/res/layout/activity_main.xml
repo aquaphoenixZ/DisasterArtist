@@ -35,24 +35,21 @@
 
         <LinearLayout
             android:id="@+id/nav_footer"
-            android:layout_width="match_parent"
+            android:layout_width="280dp"
             android:layout_height="60dp"
             android:layout_gravity="bottom"
-            android:orientation="vertical"
-            android:background="@color/colorNavFooter">
+            android:background="@color/colorNavFooter"
+            android:orientation="vertical">
 
             <ImageButton
-                android:id="@+id/imageButton4"
+                android:id="@+id/menu_panic_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/colorNavFooter"
+                android:contentDescription="@string/panic_button"
                 android:tint="#FF0000"
                 app:srcCompat="@android:drawable/ic_dialog_alert" />
-
-            <TextView
-                android:layout_width="90dp"
-                android:layout_height="44dp" />
 
         </LinearLayout>
 

@@ -27,14 +27,14 @@
 
     <ImageButton
         android:id="@+id/main_panic_button"
-        android:layout_width="68dp"
+        android:layout_width="85dp"
         android:layout_height="?attr/actionBarSize"
         android:backgroundTint="@color/colorPrimary"
         android:contentDescription="@string/panic_button"
         android:scaleType="center"
-        android:tint="#E60707"
+        android:tint="@color/panicColor"
         app:layout_anchor="@+id/toolbar"
-        app:layout_anchorGravity="right"
+        app:layout_anchorGravity="end|center"
         app:srcCompat="@android:drawable/stat_sys_warning" />
 
 

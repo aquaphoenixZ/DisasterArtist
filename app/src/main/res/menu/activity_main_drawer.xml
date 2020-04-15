@@ -19,7 +19,8 @@
             android:id="@+id/nav_tools"
             android:enabled="true"
             android:icon="@drawable/ic_build_black_24dp"
-            android:title="@string/tool_text" />
+            android:title="@string/tool_text"
+            app:showAsAction="always"/>
         <item
             android:id="@+id/nav_maps"
             android:enabled="true"

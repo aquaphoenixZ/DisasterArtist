@@ -16,9 +16,13 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.DisasterArtist.disaster.core.OnPromptPanicDialog;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements
+        NavigationView.OnNavigationItemSelectedListener, OnPromptPanicDialog, View.OnClickListener
+{
 
     private ImageButton mainPanicButton;
     private ImageButton menuPanicButton;
@@ -39,28 +43,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        //Panic Button Behaviour
         mainPanicButton = findViewById(R.id.main_panic_button);
-        mainPanicButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("Test","Dialog opened");
-                PanicDialog dialog = new PanicDialog();
-                dialog.show(getSupportFragmentManager(),"PanicDialog");
-            }
-        });
+        mainPanicButton.setOnClickListener(this);
 
-        mainPanicButton = findViewById(R.id.menu_panic_button);
-        mainPanicButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("Test","Dialog opened");
-                PanicDialog dialog = new PanicDialog();
-                dialog.show(getSupportFragmentManager(),"PanicDialog");
-            }
-        });
+        menuPanicButton = findViewById(R.id.menu_panic_button);
+        menuPanicButton.setOnClickListener(this);
 
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+
+        switch (id){
+            case R.id.main_panic_button:
+            case R.id.menu_panic_button:
+                openPanicDialog();
+                openPanicSnack(v);break;
+
+        }
+    }
+
+    public void openPanicDialog(){
+        Log.d("Test","Dialog opened");
+        PanicDialog dialog = new PanicDialog();
+        dialog.show(getSupportFragmentManager(),"PanicDialog");
+    }
+
+    public void openPanicSnack(View view){
+        //TODO implement snackbar
+          Snackbar.make(view, "Panic Button Triggered", Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -76,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
-        //getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
+
         return true;
     }
 
@@ -112,6 +126,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    @Override
+    public void submitPanicInfo(String name, String address, String phone) {
+        //TODO Implement panic button functionality
+        Toast.makeText(this, "Panic Info Set", Toast.LENGTH_SHORT).show();
+    }
+
+
 }
 
 

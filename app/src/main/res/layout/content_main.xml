@@ -30,43 +30,37 @@
         android:id="@+id/floodImageButton"
         android:layout_width="135dp"
         android:layout_height="75dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/floods"
         android:contentDescription="@string/flood_txt"
         android:elevation="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.213"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.243" />
+        app:layout_constraintTop_toBottomOf="@+id/locationTextView" />
 
     <ImageButton
         android:id="@+id/wildfireImageButton"
         android:layout_width="135dp"
         android:layout_height="75dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="48dp"
         android:background="@drawable/firewild"
         android:contentDescription="@string/fire_txt"
         android:elevation="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.756"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.244" />
+        app:layout_constraintStart_toEndOf="@+id/floodImageButton"
+        app:layout_constraintTop_toTopOf="@+id/floodImageButton" />
 
     <ImageButton
         android:id="@+id/nuclearImageButton"
         android:layout_width="135dp"
         android:layout_height="75dp"
+        android:layout_marginTop="48dp"
         android:background="@drawable/nuklear"
         android:contentDescription="@string/nuclear_txt"
         android:elevation="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.213"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.434" />
+        app:layout_constraintStart_toStartOf="@+id/floodImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/floodImageButton" />
 
     <ImageButton
         android:id="@+id/thunderStormImageButton"
@@ -75,26 +69,20 @@
         android:background="@drawable/thunderstorm"
         android:contentDescription="@string/thunderstorm_txt"
         android:elevation="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.756"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.434" />
+        app:layout_constraintEnd_toEndOf="@+id/wildfireImageButton"
+        app:layout_constraintStart_toStartOf="@+id/wildfireImageButton"
+        app:layout_constraintTop_toTopOf="@+id/nuclearImageButton" />
 
     <ImageButton
         android:id="@+id/earthquakeImageButton"
         android:layout_width="135dp"
         android:layout_height="75dp"
+        android:layout_marginTop="48dp"
         android:background="@drawable/quake"
         android:contentDescription="@string/earthquake_txt"
         android:elevation="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.213"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.623" />
+        app:layout_constraintStart_toStartOf="@+id/nuclearImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/nuclearImageButton" />
 
     <ImageButton
         android:id="@+id/landslideImageButton"
@@ -103,26 +91,20 @@
         android:background="@drawable/landsilepic"
         android:contentDescription="@string/landslide_txt"
         android:elevation="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.756"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.623" />
+        app:layout_constraintEnd_toEndOf="@+id/thunderStormImageButton"
+        app:layout_constraintStart_toStartOf="@+id/thunderStormImageButton"
+        app:layout_constraintTop_toTopOf="@+id/earthquakeImageButton" />
 
     <ImageButton
         android:id="@+id/pandemicImageButton"
         android:layout_width="135dp"
         android:layout_height="75dp"
+        android:layout_marginTop="48dp"
         android:background="@drawable/pandemic"
         android:contentDescription="@string/pandemic_txt"
         android:elevation="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.213"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.82" />
+        app:layout_constraintStart_toStartOf="@+id/earthquakeImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/earthquakeImageButton" />
 
     <ImageButton
         android:id="@+id/androidH20ImageButton"
@@ -131,12 +113,9 @@
         android:background="@drawable/vanier_android"
         android:contentDescription="@string/android_txt"
         android:elevation="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.756"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.82" />
+        app:layout_constraintEnd_toEndOf="@+id/landslideImageButton"
+        app:layout_constraintStart_toStartOf="@+id/landslideImageButton"
+        app:layout_constraintTop_toTopOf="@+id/pandemicImageButton" />
 
     <LinearLayout
         android:id="@+id/nav_footer"

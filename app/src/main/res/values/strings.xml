@@ -25,4 +25,7 @@
     <string name="dialog_submit">Submit</string>
     <string name="dialog_header_content_descritpion">The header</string>
     <string name="panic_button">Panic button</string>
+    <string name="title_activity_flood_disaster">FloodDisaster</string>
+    <string name="tab_text_Tips">Tips</string>
+    <string name="tab_text_Checklist">Checklist</string>
 </resources>

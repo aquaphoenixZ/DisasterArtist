@@ -28,6 +28,7 @@
 
     <ImageButton
         android:id="@+id/floodImageButton"
+        android:onClick="floodDisaster"
         android:layout_width="135dp"
         android:layout_height="75dp"
         android:layout_marginStart="48dp"
@@ -40,6 +41,7 @@
 
     <ImageButton
         android:id="@+id/wildfireImageButton"
+        android:onClick="fireDisaster"
         android:layout_width="135dp"
         android:layout_height="75dp"
         android:layout_marginStart="32dp"

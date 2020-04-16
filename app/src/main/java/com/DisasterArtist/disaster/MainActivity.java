@@ -133,7 +133,16 @@ public class MainActivity extends AppCompatActivity implements
         Toast.makeText(this, "Panic Info Set", Toast.LENGTH_SHORT).show();
     }
 
+    //-- Disaster button(s) onClick views
+    public void floodDisaster(View view) {
+        Toast.makeText(this, "You've clicked on Flood", Toast.LENGTH_SHORT).show();
+        Intent flood = new Intent(this, FloodDisaster.class);
+        startActivity(flood);
+    }
 
+    public void fireDisaster(View view) {
+        Toast.makeText(this, "You've clicked on Fire", Toast.LENGTH_SHORT).show();
+    }
 }
 
 

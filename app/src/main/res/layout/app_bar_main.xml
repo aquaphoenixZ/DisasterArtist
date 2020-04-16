@@ -11,7 +11,7 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
 
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -23,7 +23,7 @@
         android:background="@color/colorPrimary"
         app:layout_anchor="@+id/appBarLayout"
         app:layout_anchorGravity="left"
-        app:popupTheme="@style/AppTheme" />
+        app:popupTheme="@style/AppTheme.NoActionBar" />
 
     <ImageButton
         android:id="@+id/main_panic_button"

@@ -15,7 +15,7 @@
     <string name="landslide_txt">Landslide</string>
     <string name="earthquake_txt">Earthquake</string>
     <string name="thunderstorm_txt">Thunderstorm</string>
-    <string name="nuclear_txt">"Nuclear "</string>
+    <string name="nuclear_txt">Nuclear</string>
     <string name="fire_txt">Fire</string>
     <string name="flood_txt">Floods</string>
     <string name="dialog_name">Name</string>

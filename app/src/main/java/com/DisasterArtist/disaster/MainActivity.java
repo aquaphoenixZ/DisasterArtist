@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.DisasterArtist.disaster.core.OnPromptPanicDialog;
+import com.DisasterArtist.disaster.disasterClasses.FloodDisaster;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements
 
     private ImageButton mainPanicButton;
     private ImageButton menuPanicButton;
+    private ImageButton floodDisasterBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,10 @@ public class MainActivity extends AppCompatActivity implements
         menuPanicButton = findViewById(R.id.menu_panic_button);
         menuPanicButton.setOnClickListener(this);
 
+        //Flood Button Behaviour
+        floodDisasterBtn = findViewById(R.id.floodImageButton);
+        floodDisasterBtn.setOnClickListener(this);
+
 
     }
 
@@ -62,6 +69,8 @@ public class MainActivity extends AppCompatActivity implements
             case R.id.menu_panic_button:
                 openPanicDialog();
                 openPanicSnack(v);break;
+            case R.id.floodImageButton:
+                    floodDisaster(v); break;
 
         }
     }
@@ -136,12 +145,16 @@ public class MainActivity extends AppCompatActivity implements
     //-- Disaster button(s) onClick views
     public void floodDisaster(View view) {
         Toast.makeText(this, "You've clicked on Flood", Toast.LENGTH_SHORT).show();
-        Intent flood = new Intent(this, FloodDisaster.class);
-        startActivity(flood);
+        Intent disaster = new Intent(this, DisasterActivity.class);
+        disaster.putExtra("KEY_DISASTER", R.string.flood_txt);
+        startActivity(disaster);
     }
 
     public void fireDisaster(View view) {
         Toast.makeText(this, "You've clicked on Fire", Toast.LENGTH_SHORT).show();
+        Intent disaster = new Intent(this, DisasterActivity.class);
+        disaster.putExtra("KEY_DISASTER", R.string.fire_txt);
+        startActivity(disaster);
     }
 }
 

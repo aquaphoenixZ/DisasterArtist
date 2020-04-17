@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -81,6 +83,11 @@ public class NewsActivity extends MainActivity {
     }
 
     @Override
+    public void onClick(View v) {
+        super.onClick(v);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
@@ -93,6 +100,8 @@ public class NewsActivity extends MainActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.news_text);
         setSupportActionBar(toolbar);
+
+        findViewById(R.id.main_panic_button).setOnClickListener(this);
 
         recView = (RecyclerView) findViewById(R.id.news_recyclerView);
         recLayMan = new GridLayoutManager(this, 1, RecyclerView.VERTICAL, false);

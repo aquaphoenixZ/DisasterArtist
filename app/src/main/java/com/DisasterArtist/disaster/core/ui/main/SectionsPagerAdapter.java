@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.DisasterArtist.disaster.FloodChecklistFrag;
-import com.DisasterArtist.disaster.FloodTipsFrag;
+import com.DisasterArtist.disaster.CheckListFrag;
+import com.DisasterArtist.disaster.TipsFrag;
 import com.DisasterArtist.disaster.R;
 
 
@@ -33,10 +33,10 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position){
             case 0:
-                fragment = new FloodTipsFrag();
+                fragment = new TipsFrag();
                 break;
             case 1:
-                fragment = new FloodChecklistFrag();
+                fragment = new CheckListFrag();
                 break;
         }
         return fragment;

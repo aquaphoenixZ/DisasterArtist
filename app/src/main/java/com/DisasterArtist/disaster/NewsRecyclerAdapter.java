@@ -1,5 +1,6 @@
 package com.DisasterArtist.disaster;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,6 @@ class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapter.NewsV
     private String objectName;
     private String newsTitle;
     private String newsDesc;
-    private String imageURL;
 
 
     public NewsRecyclerAdapter(JSONArray newsObject){
@@ -44,13 +44,24 @@ class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapter.NewsV
     @Override
     public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
         try {
-
+            //TODO fix picasso image adapter with proper error handling
             JSONObject articleObj = (JSONObject) news.get(position);
 
             holder.title.setText(articleObj.getString("title"));
             holder.url.setText(articleObj.getString("url"));
-            Picasso.with(holder.newsImage.getContext()).load(articleObj.getString("urlToImage")).into(holder.newsImage);
             holder.description.setText(articleObj.getString("description"));
+
+            String imageUrl = articleObj.getString("urlToImage");
+            Log.i("NEWSURL", imageUrl);
+            Log.i("NEWSURLLENGHT",Integer.toString(imageUrl.length()));
+            if(imageUrl.length() != 0){
+                Picasso.with(holder.newsImage.getContext()).load(imageUrl).into(holder.newsImage);
+            }
+            else {
+                Picasso.with(holder.newsImage.
+                        getContext()).load("https://www.courieranywhere.com/wp-content/uploads/2018/07/breaking-news-logo.jpg).into(holder.newsImage");
+            }
+
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -118,9 +118,6 @@ public class MainActivity extends AppCompatActivity implements
                 Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, MainActivity.class));
                 break;
-            case R.id.sorry_face:
-                Toast.makeText(this, "yo tambien", Toast.LENGTH_SHORT).show();
-                break;
         }
 
         return true;

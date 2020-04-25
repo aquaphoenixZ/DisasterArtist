@@ -41,11 +41,6 @@
             android:enabled="true"
             android:title="@string/dark_mode_text"
             app:actionLayout="@layout/switch_item" />
-        <item
-            android:id="@+id/sorry_face"
-            android:enabled="true"
-            android:icon="@drawable/ic_favorite_black_24dp"
-            android:title="Me too c:" />
     </group>
 
 

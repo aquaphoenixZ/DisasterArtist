@@ -2,13 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_View">
+    tools:showIn="navigation_View"
+
+    >
 
     <group
         android:checkableBehavior="none"
         android:enabled="true"
         android:menuCategory="system"
-        android:visible="true">
+        android:visible="true"
+        >
         <item
             android:id="@+id/nav_home"
             android:icon="?attr/homeAsUpIndicator"
@@ -38,9 +41,10 @@
             android:title="@string/setting_text" />
         <item
             android:id="@+id/dark_mode_switch"
-            android:enabled="true"
             android:title="@string/dark_mode_text"
-            app:actionLayout="@layout/switch_item" />
+            app:actionLayout="@layout/switch_item"
+            app:showAsAction="never" ></item>
+
     </group>
 
 

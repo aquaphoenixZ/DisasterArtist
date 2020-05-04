@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--darkMode-->
+    <color name="colorBackground">#1a1a1a</color>
+    <color name="colorPrimary">#000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorNavWBar">#000</color>
+    <color name="textColor">#fff</color>
+</resources>

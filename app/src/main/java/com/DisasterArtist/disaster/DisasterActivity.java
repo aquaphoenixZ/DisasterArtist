@@ -39,14 +39,6 @@ public class DisasterActivity extends MainActivity  {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-        //Send disaster information to disaster tips and checklist fragments
-        /*Bundle bundle = new Bundle();
-        bundle.putInt("KEY_DISASTER", disasterStarter);
-        Fragment tipsFragment = (TipsFrag) new TipsFrag();
-        Fragment checkFragment = (CheckListFrag) new CheckListFrag();
-        tipsFragment.setArguments(bundle);
-        checkFragment.setArguments(bundle);*/
-
 
     }
 

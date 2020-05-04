@@ -10,7 +10,6 @@
     <color name="colorNavFooter">#b52f22</color>
     <color name="colorNavFooterDarker">#ab271b</color>
     <color name="panicColor">#E60707</color>
-
-
+    <color name="textColor">#000000</color>
 
 </resources>

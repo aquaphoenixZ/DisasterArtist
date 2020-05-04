@@ -3,21 +3,20 @@ package com.DisasterArtist.disaster;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.DisasterArtist.disaster.core.OnPromptPanicDialog;
@@ -29,16 +28,9 @@ public class MainActivity extends AppCompatActivity implements
         NavigationView.OnNavigationItemSelectedListener, OnPromptPanicDialog, View.OnClickListener
 {
 
-    SharedPreferences preferences;
-    SharedPreferences.Editor editor;
-   public static Context mContext;
-
     private ImageButton mainPanicButton;
     private ImageButton menuPanicButton;
-    private ImageButton floodDisasterBtn;
-    //private boolean firstTimeOpeningApp = true; // boolean to tell if the app should open the dialog or not;
-   // private String[] panicInfo;  // Array containing the contact info passed from the dialog
-     // intent that opens the phone app when the panic button is clicked
+    private Switch darkModeSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,32 +51,20 @@ public class MainActivity extends AppCompatActivity implements
         //Panic Button Behaviour
         mainPanicButton = findViewById(R.id.main_panic_button);
         mainPanicButton.setOnClickListener(this);
-
         menuPanicButton = findViewById(R.id.menu_panic_button);
         menuPanicButton.setOnClickListener(this);
 
-        //Flood Button Behaviour
-        floodDisasterBtn = findViewById(R.id.floodImageButton);
-        floodDisasterBtn.setOnClickListener(this);
+        //Disasters
+        findViewById(R.id.floodImageButton).setOnClickListener(this);
+        findViewById(R.id.wildfireImageButton).setOnClickListener(this);
+        findViewById(R.id.nuclearImageButton).setOnClickListener(this);
+        findViewById(R.id.earthquakeImageButton).setOnClickListener(this);
+        findViewById(R.id.thunderStormImageButton).setOnClickListener(this);
+        findViewById(R.id.landslideImageButton).setOnClickListener(this);
+        findViewById(R.id.pandemicImageButton).setOnClickListener(this);
+        findViewById(R.id.androidH20ImageButton).setOnClickListener(this);
 
-        //Shared preference
-        preferences = getSharedPreferences("Saved info & settings", Context.MODE_PRIVATE);
-        editor = preferences.edit();
-
-        editor.putBoolean("First time opening app", true);
-        editor.apply();
-         editor.putString("test","Zach");
-
-        //Panic Dialog
-        if (preferences.getBoolean("First time opening app", true)){
-            editor.putBoolean("First time opening app",false);
-            editor.apply();
-            openPanicDialog();
-        }
     }
-
-
-
 
     @Override
     public void onClick(View v) {
@@ -93,15 +73,27 @@ public class MainActivity extends AppCompatActivity implements
         switch (id){
             case R.id.main_panic_button:
             case R.id.menu_panic_button:
+                openPanicDialog();
                 openPanicSnack(v);break;
-
-
             case R.id.floodImageButton:
-                    floodDisaster(v); break;
-
-
+                floodDisaster(v); break;
+            case R.id.wildfireImageButton:
+                fireDisaster(v); break;
+            case R.id.thunderStormImageButton:
+                thunderDisaster(v); break;
+            case R.id.nuclearImageButton:
+                nuclearDisaster(v); break;
+            case R.id.earthquakeImageButton:
+                earthDisaster(v); break;
+            case R.id.pandemicImageButton:
+                pandemicDisaster(v); break;
+            case R.id.landslideImageButton:
+                landslideDisaster(v); break;
+            case R.id.androidH20ImageButton:
+                androidDisaster(v); break;
         }
     }
+
 
     public void openPanicDialog(){
         Log.d("Test","Dialog opened");
@@ -111,15 +103,7 @@ public class MainActivity extends AppCompatActivity implements
 
     public void openPanicSnack(View view){
         //TODO implement snackbar
-          Snackbar.make(view, "Panic Button Triggered", Snackbar.LENGTH_LONG).setAction("Panic", new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                  Intent PhoneCallIntent = new Intent(Intent.ACTION_DIAL);
-                  PhoneCallIntent.setData(Uri.parse("tel:"+ preferences.getString("Contact Phone number", "444444")));
-                  startActivity(PhoneCallIntent);
-              }
-          }).show();
-
+          Snackbar.make(view, "Panic Button Triggered", Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -135,7 +119,20 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
+        //DarkModeSwitch
+        darkModeSwitch = findViewById(R.id.switchDarkMode);
 
+        darkModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+                        lightMode();
+                    else
+                        darkMode();
+                }
+            }
+        });
         return true;
     }
 
@@ -154,9 +151,24 @@ public class MainActivity extends AppCompatActivity implements
                 Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, MainActivity.class));
                 break;
+            case R.id.dark_mode_switch:
+                darkModeSwitch.setChecked(true);
+                break;
         }
 
         return true;
+    }
+
+    public void darkMode(){
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        finish();
+    }
+
+    public void lightMode(){
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        finish();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -177,16 +189,58 @@ public class MainActivity extends AppCompatActivity implements
 
     //-- Disaster button(s) onClick views
     public void floodDisaster(View view) {
-        Toast.makeText(this, "You've clicked on Flood", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Flood Disaster", Toast.LENGTH_SHORT).show();
         Intent disaster = new Intent(this, DisasterActivity.class);
         disaster.putExtra("KEY_DISASTER", R.string.flood_txt);
         startActivity(disaster);
     }
 
     public void fireDisaster(View view) {
-        Toast.makeText(this, "You've clicked on Fire", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Fire Disaster", Toast.LENGTH_SHORT).show();
         Intent disaster = new Intent(this, DisasterActivity.class);
         disaster.putExtra("KEY_DISASTER", R.string.fire_txt);
+        startActivity(disaster);
+    }
+
+    private void thunderDisaster(View v) {
+        Toast.makeText(this, "Thunderstorm", Toast.LENGTH_SHORT).show();
+        Intent disaster = new Intent(this, DisasterActivity.class);
+        disaster.putExtra("KEY_DISASTER", R.string.thunderstorm_txt);
+        startActivity(disaster);
+    }
+
+    private void nuclearDisaster(View v) {
+        Toast.makeText(this, "Nuclear Disaster", Toast.LENGTH_SHORT).show();
+        Intent disaster = new Intent(this, DisasterActivity.class);
+        disaster.putExtra("KEY_DISASTER", R.string.nuclear_txt);
+        startActivity(disaster);
+    }
+
+    private void androidDisaster(View v) {
+        Toast.makeText(this, "Android Disaster", Toast.LENGTH_SHORT).show();
+        Intent disaster = new Intent(this, DisasterActivity.class);
+        disaster.putExtra("KEY_DISASTER", R.string.android_txt);
+        startActivity(disaster);
+    }
+
+    private void landslideDisaster(View v) {
+        Toast.makeText(this, "Landslide", Toast.LENGTH_SHORT).show();
+        Intent disaster = new Intent(this, DisasterActivity.class);
+        disaster.putExtra("KEY_DISASTER", R.string.landslide_txt);
+        startActivity(disaster);
+    }
+
+    private void pandemicDisaster(View v) {
+        Toast.makeText(this, "Pandemic", Toast.LENGTH_SHORT).show();
+        Intent disaster = new Intent(this, DisasterActivity.class);
+        disaster.putExtra("KEY_DISASTER", R.string.pandemic_txt);
+        startActivity(disaster);
+    }
+
+    private void earthDisaster(View v) {
+        Toast.makeText(this, "Earthquake", Toast.LENGTH_SHORT).show();
+        Intent disaster = new Intent(this, DisasterActivity.class);
+        disaster.putExtra("KEY_DISASTER", R.string.earthquake_txt);
         startActivity(disaster);
     }
 }

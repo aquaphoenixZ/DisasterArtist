@@ -28,4 +28,5 @@
     <string name="title_activity_flood_disaster">FloodDisaster</string>
     <string name="tab_text_Tips">Tips</string>
     <string name="tab_text_Checklist">Checklist</string>
+    <string name="field_not_filled">All field needs to be filled</string>
 </resources>

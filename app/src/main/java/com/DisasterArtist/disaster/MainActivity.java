@@ -7,8 +7,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,10 +29,16 @@ public class MainActivity extends AppCompatActivity implements
         NavigationView.OnNavigationItemSelectedListener, OnPromptPanicDialog, View.OnClickListener
 {
 
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+   public static Context mContext;
+
     private ImageButton mainPanicButton;
     private ImageButton menuPanicButton;
     private ImageButton floodDisasterBtn;
-
+    //private boolean firstTimeOpeningApp = true; // boolean to tell if the app should open the dialog or not;
+   // private String[] panicInfo;  // Array containing the contact info passed from the dialog
+     // intent that opens the phone app when the panic button is clicked
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +67,24 @@ public class MainActivity extends AppCompatActivity implements
         floodDisasterBtn = findViewById(R.id.floodImageButton);
         floodDisasterBtn.setOnClickListener(this);
 
+        //Shared preference
+        preferences = getSharedPreferences("Saved info & settings", Context.MODE_PRIVATE);
+        editor = preferences.edit();
 
+        editor.putBoolean("First time opening app", true);
+        editor.apply();
+         editor.putString("test","Zach");
+
+        //Panic Dialog
+        if (preferences.getBoolean("First time opening app", true)){
+            editor.putBoolean("First time opening app",false);
+            editor.apply();
+            openPanicDialog();
+        }
     }
+
+
+
 
     @Override
     public void onClick(View v) {
@@ -67,10 +93,12 @@ public class MainActivity extends AppCompatActivity implements
         switch (id){
             case R.id.main_panic_button:
             case R.id.menu_panic_button:
-                openPanicDialog();
                 openPanicSnack(v);break;
+
+
             case R.id.floodImageButton:
                     floodDisaster(v); break;
+
 
         }
     }
@@ -83,7 +111,15 @@ public class MainActivity extends AppCompatActivity implements
 
     public void openPanicSnack(View view){
         //TODO implement snackbar
-          Snackbar.make(view, "Panic Button Triggered", Snackbar.LENGTH_LONG).show();
+          Snackbar.make(view, "Panic Button Triggered", Snackbar.LENGTH_LONG).setAction("Panic", new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  Intent PhoneCallIntent = new Intent(Intent.ACTION_DIAL);
+                  PhoneCallIntent.setData(Uri.parse("tel:"+ preferences.getString("Contact Phone number", "444444")));
+                  startActivity(PhoneCallIntent);
+              }
+          }).show();
+
     }
 
     @Override

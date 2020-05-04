@@ -1,6 +1,7 @@
 package com.DisasterArtist.disaster;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,6 +25,8 @@ public class PanicDialog extends DialogFragment {
     private EditText phoneNumber;
     private EditText address;
     private Button submit;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
 
     @Nullable
@@ -36,14 +39,25 @@ public class PanicDialog extends DialogFragment {
         address = view.findViewById(R.id.dialog_address);
         submit = view.findViewById(R.id.dialog_submit_button);
 
+        preferences = getActivity().getSharedPreferences("Saved info & settings", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO change submitPanicInfo for actual values
                 Log.d(TAG,"Submit clicked. Closing dialog");
-                submitPanicInfo.submitPanicInfo("Robert","Av De Niro"," 666");
-                getDialog().dismiss();
-
+                if(name.getText().toString().trim().length() == 0 || phoneNumber.getText().toString().trim().length() == 0 || address.getText().toString().trim().length() == 0){
+                    Toast.makeText(getContext(), R.string.field_not_filled, Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    editor.putString("Contact Name", String.valueOf(name.getText()));
+                    editor.putString("Contact Phone number", String.valueOf(phoneNumber.getText()));
+                    editor.putString("Contact Address", String.valueOf(address.getText()));
+                    editor.apply();
+                    submitPanicInfo.submitPanicInfo("Robert", "Av De Niro", " 666");
+                    getDialog().dismiss();
+                }
             }
         });
 

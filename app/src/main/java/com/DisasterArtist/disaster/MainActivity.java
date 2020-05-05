@@ -11,18 +11,32 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.DisasterArtist.disaster.core.OnPromptPanicDialog;
 import com.DisasterArtist.disaster.disasterClasses.FloodDisaster;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity implements
         NavigationView.OnNavigationItemSelectedListener, OnPromptPanicDialog, View.OnClickListener
@@ -31,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements
     private ImageButton mainPanicButton;
     private ImageButton menuPanicButton;
     private Switch darkModeSwitch;
+    JSONObject weather = new JSONObject();
+    JSONObject weatherLocation = new JSONObject();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +149,8 @@ public class MainActivity extends AppCompatActivity implements
                 }
             }
         });
+
+        weatherLocationSet();
         return true;
     }
 
@@ -242,6 +260,58 @@ public class MainActivity extends AppCompatActivity implements
         Intent disaster = new Intent(this, DisasterActivity.class);
         disaster.putExtra("KEY_DISASTER", R.string.earthquake_txt);
         startActivity(disaster);
+    }
+
+    //Filling Weather Api
+    public void weatherLocationSet(){
+        RequestQueue reqQueue = Volley.newRequestQueue(this);
+        String city = "Montreal";
+        String weatherUrl =
+                "http://api.weatherstack.com/current?access_key=4fa748ce0b77a7e272b9b716d4173d64&query="
+                + city;
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, weatherUrl, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            weather = response.getJSONObject("current");
+                            weatherLocation = response.getJSONObject("location");
+                            setWeatherLocationViews(weather, weatherLocation);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.getCause();
+                        error.getStackTrace();
+                        Log.e("RESPONSE ERROR", error.getMessage());
+                    }
+                });
+        reqQueue.add(jsonObjectRequest);
+    }
+
+    public void setWeatherLocationViews(JSONObject weather, JSONObject location){
+        final TextView locationTxt = findViewById(R.id.locationTextView);
+        final TextView weatherText = findViewById(R.id.weatherTextView);
+        final TextView temperature = findViewById(R.id.temperatureView);
+        final ImageView weatherIcon = findViewById(R.id.weatherIcon);
+
+        try {
+            locationTxt.setText(location.getString("name"));
+            temperature.setText(weather.getString("temperature") + "°C");
+            weatherText.setText(weather.getJSONArray("weather_descriptions").get(0).toString());
+            if(weather.getString("weather_icons").length() != 0)
+                Picasso.with(weatherIcon.getContext()).load(weather.getJSONArray("weather_icons").get(0).toString()).
+                        into(weatherIcon);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 }
 

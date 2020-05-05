@@ -44,7 +44,6 @@ class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapter.NewsV
     @Override
     public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
         try {
-            //TODO fix picasso image adapter with proper error handling
             JSONObject articleObj = (JSONObject) news.get(position);
 
             holder.title.setText(articleObj.getString("title"));
@@ -61,7 +60,6 @@ class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapter.NewsV
                 Picasso.with(holder.newsImage.
                         getContext()).load("https://www.courieranywhere.com/wp-content/uploads/2018/07/breaking-news-logo.jpg).into(holder.newsImage");
             }
-
 
         } catch (JSONException e) {
             e.printStackTrace();

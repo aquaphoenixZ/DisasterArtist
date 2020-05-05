@@ -1,20 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:layout_height="wrap_content"
+    android:background="@color/colorNavWBar"
+    android:elevation="10dp"
     android:gravity="bottom"
-    android:orientation="vertical"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark"
-    >
+    android:padding="25dp"
+    app:layout_insetEdge="bottom">
 
-    <TextView
-        android:id="@+id/weatherTextview"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:text=""
-        android:background="@color/colorNavWBar"/>
+    <ImageView
+        android:id="@+id/weatherIcon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="28dp"
+        android:fadingEdge="horizontal|vertical"
+        app:srcCompat="@android:drawable/ic_menu_help" />
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/weatherIcon"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_toEndOf="@+id/weatherIcon"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/temperatureView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/temperatureTxt"
+            android:textAlignment="center"
+            android:textSize="10pt" />
+
+
+        <TextView
+            android:id="@+id/weatherTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/weatherTxt"
+            android:textAlignment="center"
+            android:textSize="8pt" />
+    </LinearLayout>
+
+</RelativeLayout>

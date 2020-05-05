@@ -29,4 +29,6 @@
     <string name="tab_text_Tips">Tips</string>
     <string name="tab_text_Checklist">Checklist</string>
     <string name="field_not_filled">All field needs to be filled</string>
+    <string name="weatherTxt">Weather</string>
+    <string name="temperatureTxt">0C</string>
 </resources>

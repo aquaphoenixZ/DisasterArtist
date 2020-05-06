@@ -272,6 +272,12 @@ public class MainActivity extends AppCompatActivity implements
                 Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
                 Intent settingsIntent = new Intent(this, SettingsActivity.class);
                 startActivity(settingsIntent);
+                break;
+            case R.id.nav_maps:
+                Toast.makeText(this, "Maps", Toast.LENGTH_SHORT).show();
+                Intent mapIntent = new Intent(this, MapsActivity.class);
+                startActivity(mapIntent);
+                break;
         }
 
         return true;

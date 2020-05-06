@@ -36,6 +36,7 @@
     <string name="ok">OK</string>
     <string name="about">About</string>
     <string name="aboutFinePrint">I don\'t know what to put hereeeee.</string>
+    <string name="title_activity_maps">Area Map</string>
 
 
 </resources>

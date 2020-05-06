@@ -21,16 +21,6 @@
 
         <include layout="@layout/app_bar_main" />
 
-        <EditText
-            android:id="@+id/userSearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints="@string/userNewsSearch"
-            android:ems="10"
-            android:hint="@string/userNewsSearch"
-            android:inputType="textPersonName"
-            android:text=""
-            android:textAlignment="center" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/news_recyclerView"

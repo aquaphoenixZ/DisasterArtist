@@ -1,5 +1,7 @@
 package com.DisasterArtist.disaster;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -34,17 +36,11 @@ public class NewsActivity extends MainActivity {
     private RecyclerView.LayoutManager  recLayMan;
     private JSONArray news = new JSONArray();
 
-    //Gets the category for the search
-    public String getSearchCategory(){
-        TextView userSearch = findViewById(R.id.userSearch);
-        return userSearch.getText().toString();
-    }
 
     public void adaptJSONObject(){
         RequestQueue requestQueue =  Volley.newRequestQueue(this);
 
         //URL with category for Json parse
-        String searchCategory = getSearchCategory();
         String newsUrl = "https://newsapi.org/v2/everything?q=disaster&apiKey=91639c1c24074b4ca5692f1088162e57";
 
         //Creates the volley request to retrieve the news
@@ -84,7 +80,7 @@ public class NewsActivity extends MainActivity {
 
     @Override
     public void onClick(View v) {
-        super.onClick(v);
+       super.onClick(v);
     }
 
     @Override

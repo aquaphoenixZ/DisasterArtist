@@ -1,7 +1,7 @@
 package com.DisasterArtist.disaster;
 
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.LayoutInflater;
@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +23,7 @@ public class SettingsActivity extends MainActivity {
     ListView listView;
     TextView textView;
     String[] listItems;
+    AlertDialog licenseAbout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,7 @@ public class SettingsActivity extends MainActivity {
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, listItems);
 
+
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -60,6 +61,7 @@ public class SettingsActivity extends MainActivity {
                         break;
                     case 2:
                         //Weather
+                        openWeatherPage();
                         break;
                     case 3:
                         //License
@@ -83,40 +85,43 @@ public class SettingsActivity extends MainActivity {
     public void openLicenseDialog(){
         AlertDialog.Builder licenseBuilder = new AlertDialog.Builder(SettingsActivity.this);
         ViewGroup licenseViewGroup = findViewById(android.R.id.content);
-        View licenseDialogView = LayoutInflater.from(SettingsActivity.this).inflate(R.layout.license_layout, licenseViewGroup, false);
+        View licenseDialogView = LayoutInflater.from(SettingsActivity.this).
+                inflate(R.layout.licence_about_alert_layout, licenseViewGroup, false);
         licenseBuilder.setView(licenseDialogView);
-        final AlertDialog licenseAlertDialog = licenseBuilder.create();
-
-        /*Button btn = (Button) findViewById(R.id.buttonOk);
-        btn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                licenseAlertDialog.dismiss();
-            }
-        });*/
-
-        licenseAlertDialog.show();
+        licenseAbout = licenseBuilder.create();
+        licenseDialogView.findViewById(R.id.buttonOk).setOnClickListener(this);
+        licenseAbout.show();
     }
 
     public void openAboutDialog(){
         AlertDialog.Builder aboutBuilder = new AlertDialog.Builder(SettingsActivity.this);
         ViewGroup aboutViewGroup = findViewById(android.R.id.content);
-        View aboutDialogView = LayoutInflater.from(SettingsActivity.this).inflate(R.layout.about_layout, aboutViewGroup, false);
+        View aboutDialogView = LayoutInflater.from(SettingsActivity.this).inflate(R.layout.licence_about_alert_layout,
+                aboutViewGroup, false);
         aboutBuilder.setView(aboutDialogView);
-        final AlertDialog aboutAlertDialog = aboutBuilder.create();
-        aboutAlertDialog.show();
+        licenseAbout = aboutBuilder.create();
+        TextView title = aboutDialogView.findViewById(R.id.lincenseAboutTitle);
+        aboutDialogView.findViewById(R.id.buttonOk).setOnClickListener(this);
+        title.setText("About");
+        licenseAbout.show();
 
-        /*Button btn = (Button) findViewById(R.id.buttonOk);
-        btn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                aboutAlertDialog.dismiss();
-            }
-        });*/
+    }
+
+    public void openWeatherPage(){
+        String weatherUrl = "https://www.theweathernetwork.com/ca";
+        Intent weatherUrlIntent = new Intent(Intent.ACTION_VIEW);
+        weatherUrlIntent.setData(Uri.parse(weatherUrl));
+        startActivity(weatherUrlIntent);
     }
 
 
     @Override
     public void onClick(View v) {
         super.onClick(v);
+        int id = v.getId();
+        switch(id){
+            case R.id.buttonOk: licenseAbout.dismiss(); break;
+        }
     }
 
     @Override

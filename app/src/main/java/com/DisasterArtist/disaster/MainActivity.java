@@ -5,10 +5,14 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.AlertDialog;
 import android.content.ComponentName;
+import android.app.Notification;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Camera;
@@ -46,6 +50,8 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static com.DisasterArtist.disaster.DisasterApp.CHANNEL_WEATHER_ID;
+
 import java.io.File;
 import java.security.Policy;
 
@@ -56,9 +62,11 @@ public class MainActivity extends AppCompatActivity implements
     private ImageButton mainPanicButton;
     private ImageButton menuPanicButton;
     private Switch darkModeSwitch;
-    JSONObject weather = new JSONObject();
-    JSONObject weatherLocation = new JSONObject();
-    private String spinnerOptions[] = {"Select", "Calculator", "Camera", "Compass", "Flashlight", "Notes", "Recorder"};
+    private NotificationManagerCompat notificationManager;
+    private JSONObject weather = new JSONObject();
+    private JSONObject weatherLocation = new JSONObject();
+    private final String spinnerOptions[] =
+            {"Select", "Calculator", "Camera", "Compass", "Flashlight", "Notes", "Recorder"};
     public static final String CALCULATOR_PACKAGE ="com.android.calculator2";
     public static final String CALCULATOR_CLASS ="com.android.calculator2.Calculator";
     public static final int ACTIVITY_RECORD_SOUND = 0;
@@ -98,10 +106,16 @@ public class MainActivity extends AppCompatActivity implements
         findViewById(R.id.pandemicImageButton).setOnClickListener(this);
         findViewById(R.id.androidH20ImageButton).setOnClickListener(this);
 
+        //Notification manager
+        notificationManager = NotificationManagerCompat.from(this);
+
         //Tools Spinner
-        final boolean inUse = false;
         final Spinner spinner = (Spinner) navigationView.getMenu().findItem(R.id.nav_tools).getActionView();
-        spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinnerOptions));
+        spinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, spinnerOptions));
+        setSpinnerOnItemSelected(spinner);
+    }
+
+    private void setSpinnerOnItemSelected(final Spinner spinner) {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -120,34 +134,31 @@ public class MainActivity extends AppCompatActivity implements
                         startActivity(cameraIntent);
                         break;
                     case 3:
-                        //Compass
-                        /*Intent compassIntent = new Intent();
-                        compassIntent.setAction(Intent.ACTION_MAIN);
-                        compassIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-                        compassIntent.setComponent(new ComponentName(()))*/
+                        //TODO IMPLEMENT COMPASS
                         Toast.makeText(MainActivity.this, "Not Implemented", Toast.LENGTH_SHORT).show();
                         break;
                     case 4:
                         //Flashlight
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            try {
                                 CameraManager camManager = (CameraManager) getSystemService(CAMERA_SERVICE);
                                 String cameraId = null;
-                                try {
-                                    cameraId = camManager.getCameraIdList()[0];
-                                    changeFlashlightStatus();
-                                    camManager.setTorchMode(cameraId, flashlightOn);
-                                    spinner.setSelection(0);
-                                } catch (CameraAccessException e) {
-                                    e.printStackTrace();
-                                }
+                                cameraId = camManager.getCameraIdList()[0];
+                                changeFlashlightStatus();
+                                camManager.setTorchMode(cameraId, flashlightOn);
+                                spinner.setSelection(0);
+                            } catch (CameraAccessException e) {
+                                e.printStackTrace();
                             }
+                            catch (IllegalArgumentException ie){
+                                ie.printStackTrace();
+                                Toast.makeText(MainActivity.this,
+                                        "No Flashlight Available", Toast.LENGTH_SHORT).show();
+                            }
+                        }
                         break;
                     case 5:
-                        //Notes
-                        /*Intent notesIntent = new Intent();
-                        notesIntent.setAction(Intent.ACTION_MAIN);
-                        notesIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-                        //notesIntent.setComponent();*/
+                        //TODO IMPLEMENT NOTES
                         Toast.makeText(MainActivity.this, "Not Implemented Either", Toast.LENGTH_SHORT).show();
                         break;
                     case 6:
@@ -160,7 +171,6 @@ public class MainActivity extends AppCompatActivity implements
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
     }
@@ -168,6 +178,7 @@ public class MainActivity extends AppCompatActivity implements
     public void changeFlashlightStatus(){
         flashlightOn = !flashlightOn;
     }
+
 
     @Override
     public void onClick(View v) {
@@ -224,7 +235,6 @@ public class MainActivity extends AppCompatActivity implements
     public boolean onCreateOptionsMenu(Menu menu){
         //DarkModeSwitch
         darkModeSwitch = findViewById(R.id.switchDarkMode);
-
         darkModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -236,7 +246,6 @@ public class MainActivity extends AppCompatActivity implements
                 }
             }
         });
-
         weatherLocationSet();
         return true;
     }
@@ -399,11 +408,26 @@ public class MainActivity extends AppCompatActivity implements
                 Picasso.with(weatherIcon.getContext()).load(weather.getJSONArray("weather_icons").get(0).toString()).
                         into(weatherIcon);
 
+            String weatherNotDesc = locationTxt.getText() + ", " + temperature.getText();
+            sendWeatherNotification(weatherText.getText().toString(), weatherNotDesc);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
+
+    //Weather Notification
+    private void sendWeatherNotification(String title, String message){
+        Notification weatherNotification = new NotificationCompat.Builder(this, CHANNEL_WEATHER_ID)
+                .setSmallIcon(R.drawable.disasterlogo)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setPriority(NotificationCompat.PRIORITY_LOW)
+                .setCategory(NotificationCompat.CATEGORY_STATUS).build();
+
+        notificationManager.notify(1, weatherNotification);
+    }
+
 }
 
 

@@ -31,4 +31,11 @@
     <string name="field_not_filled">All field needs to be filled</string>
     <string name="weatherTxt">Weather</string>
     <string name="temperatureTxt">0C</string>
+    <string name="license">License</string>
+    <string name="licenseFinePrint">I don\'t know what to put hereeeee.</string>
+    <string name="ok">OK</string>
+    <string name="about">About</string>
+    <string name="aboutFinePrint">I don\'t know what to put hereeeee.</string>
+
+
 </resources>

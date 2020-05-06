@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="settings_array">
+        <item>Accessibility</item>
+        <item>Panic Contact</item>
+        <item>Weather</item>
+        <item>License</item>
+        <item>About</item>
+    </string-array>
+</resources>

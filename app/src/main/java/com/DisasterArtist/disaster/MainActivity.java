@@ -8,15 +8,26 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Camera;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +46,9 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.security.Policy;
+
 public class MainActivity extends AppCompatActivity implements
         NavigationView.OnNavigationItemSelectedListener, OnPromptPanicDialog, View.OnClickListener
 {
@@ -44,6 +58,13 @@ public class MainActivity extends AppCompatActivity implements
     private Switch darkModeSwitch;
     JSONObject weather = new JSONObject();
     JSONObject weatherLocation = new JSONObject();
+    private String spinnerOptions[] = {"Select", "Calculator", "Camera", "Compass", "Flashlight", "Notes", "Recorder"};
+    public static final String CALCULATOR_PACKAGE ="com.android.calculator2";
+    public static final String CALCULATOR_CLASS ="com.android.calculator2.Calculator";
+    public static final int ACTIVITY_RECORD_SOUND = 0;
+    //public static Camera cam = null;
+    private boolean flashlightOn = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +98,75 @@ public class MainActivity extends AppCompatActivity implements
         findViewById(R.id.pandemicImageButton).setOnClickListener(this);
         findViewById(R.id.androidH20ImageButton).setOnClickListener(this);
 
+        //Tools Spinner
+        final boolean inUse = false;
+        final Spinner spinner = (Spinner) navigationView.getMenu().findItem(R.id.nav_tools).getActionView();
+        spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinnerOptions));
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 1:
+                        //Calculator
+                        Intent calculatorIntent = new Intent();
+                        calculatorIntent.setAction(Intent.ACTION_MAIN);
+                        calculatorIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+                        calculatorIntent.setComponent(new ComponentName( CALCULATOR_PACKAGE, CALCULATOR_CLASS));
+                        startActivity(calculatorIntent);
+                        break;
+                    case 2:
+                        //Camera
+                        Intent cameraIntent = new Intent("android.media.action.IMAGE_CAPTURE");
+                        startActivity(cameraIntent);
+                        break;
+                    case 3:
+                        //Compass
+                        /*Intent compassIntent = new Intent();
+                        compassIntent.setAction(Intent.ACTION_MAIN);
+                        compassIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+                        compassIntent.setComponent(new ComponentName(()))*/
+                        Toast.makeText(MainActivity.this, "Not Implemented", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 4:
+                        //Flashlight
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                CameraManager camManager = (CameraManager) getSystemService(CAMERA_SERVICE);
+                                String cameraId = null;
+                                try {
+                                    cameraId = camManager.getCameraIdList()[0];
+                                    changeFlashlightStatus();
+                                    camManager.setTorchMode(cameraId, flashlightOn);
+                                    spinner.setSelection(0);
+                                } catch (CameraAccessException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        break;
+                    case 5:
+                        //Notes
+                        /*Intent notesIntent = new Intent();
+                        notesIntent.setAction(Intent.ACTION_MAIN);
+                        notesIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+                        //notesIntent.setComponent();*/
+                        Toast.makeText(MainActivity.this, "Not Implemented Either", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 6:
+                        //Recorder
+                        Intent recorderIntent = new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
+                        startActivityForResult(recorderIntent, ACTIVITY_RECORD_SOUND);
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    public void changeFlashlightStatus(){
+        flashlightOn = !flashlightOn;
     }
 
     @Override
@@ -169,6 +259,10 @@ public class MainActivity extends AppCompatActivity implements
             case R.id.dark_mode_switch:
                 darkModeSwitch.setChecked(true);
                 break;
+            case R.id.nav_settings:
+                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsIntent);
         }
 
         return true;

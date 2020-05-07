@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements
     public static final int ACTIVITY_RECORD_SOUND = 0;
     //public static Camera cam = null;
     private boolean flashlightOn = false;
+    DatabaseHelper disasterDb;
 
 
     @Override
@@ -113,6 +114,9 @@ public class MainActivity extends AppCompatActivity implements
         final Spinner spinner = (Spinner) navigationView.getMenu().findItem(R.id.nav_tools).getActionView();
         spinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, spinnerOptions));
         setSpinnerOnItemSelected(spinner);
+
+        //Database
+        disasterDb = new DatabaseHelper(this);
     }
 
     private void setSpinnerOnItemSelected(final Spinner spinner) {
@@ -433,6 +437,10 @@ public class MainActivity extends AppCompatActivity implements
 
         notificationManager.notify(1, weatherNotification);
     }
+
+    //-- Database handling classes/methods
+
+
 
 }
 

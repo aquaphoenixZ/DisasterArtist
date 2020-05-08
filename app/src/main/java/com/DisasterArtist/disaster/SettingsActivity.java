@@ -90,6 +90,8 @@ public class SettingsActivity extends MainActivity {
         licenseBuilder.setView(licenseDialogView);
         licenseAbout = licenseBuilder.create();
         licenseDialogView.findViewById(R.id.buttonOk).setOnClickListener(this);
+        TextView description = licenseDialogView.findViewById(R.id.licenseDescriptionTxt);
+        description.setText("Disaster App \nVersion 1.2 - May 2020\nDeveloped by\n Disaster Artists");
         licenseAbout.show();
     }
 
@@ -101,8 +103,10 @@ public class SettingsActivity extends MainActivity {
         aboutBuilder.setView(aboutDialogView);
         licenseAbout = aboutBuilder.create();
         TextView title = aboutDialogView.findViewById(R.id.lincenseAboutTitle);
+        TextView description = aboutDialogView.findViewById(R.id.licenseDescriptionTxt);
         aboutDialogView.findViewById(R.id.buttonOk).setOnClickListener(this);
         title.setText("About");
+        description.setText("Disaster App by Disaster Artists\nFor more information\n 1803803@edu.vaniercollege.qc.ca");
         licenseAbout.show();
 
     }

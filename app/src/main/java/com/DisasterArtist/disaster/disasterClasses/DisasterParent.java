@@ -41,4 +41,6 @@ public class DisasterParent {
     public ArrayList<String> getDisasterCheckList(){
         return this.disasterCheckList;
     }
+
+
 }

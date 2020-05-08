@@ -15,6 +15,10 @@ public class AndroidDisaster extends DisasterParent {
 
         ArrayList<String> tips = new ArrayList<>();
 
+        tips.add("Get in contact with Student Services.");
+        tips.add("Trust me, just do it");
+        tips.add("Call emergency");
+        tips.add("Pray that Student Services already have a file about the teacher");
 
         return tips;
     }
@@ -22,6 +26,10 @@ public class AndroidDisaster extends DisasterParent {
     private ArrayList<String> populateCheckList(){
 
         ArrayList<String> checkList = new ArrayList<>();
+
+        checkList.add("Do your homework.");
+        checkList.add("Be a decent student");
+        checkList.add("Have a genuine interest for the class.");
 
         return checkList;
     }

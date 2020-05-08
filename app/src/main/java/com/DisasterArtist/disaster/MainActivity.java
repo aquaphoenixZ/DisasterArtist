@@ -15,12 +15,15 @@ import android.content.ComponentName;
 import android.app.Notification;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Camera;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.BaseColumns;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
@@ -72,7 +75,11 @@ public class MainActivity extends AppCompatActivity implements
     public static final int ACTIVITY_RECORD_SOUND = 0;
     //public static Camera cam = null;
     private boolean flashlightOn = false;
-    DatabaseHelper disasterDb;
+    // Database variables
+//    DatabaseHelper disasterDb = new DatabaseHelper(this);
+//    SQLiteDatabase db = disasterDb.getReadableDatabase();
+
+
 
 
     @Override
@@ -114,9 +121,36 @@ public class MainActivity extends AppCompatActivity implements
         final Spinner spinner = (Spinner) navigationView.getMenu().findItem(R.id.nav_tools).getActionView();
         spinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, spinnerOptions));
         setSpinnerOnItemSelected(spinner);
+        // Database
 
-        //Database
-        disasterDb = new DatabaseHelper(this);
+//        //-- Defining a projection
+//
+//        String[] projection = {
+//                BaseColumns._ID,
+//                FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE,
+//                FeedReaderContract.FeedEntry.COLUMN_NAME_SUBTITLE,
+//        };
+//
+//        //Filter Results WHERE "title" = 'My Title'
+//        String selection = FeedReaderContract.FeedEntry.COLUMN_NAME_SUBTITLE + " = ?";
+//        String[] selectionArgs = { "My Title"};
+//
+//        // How you want the results to be sorted in the cursor.
+//        String sortOrder =
+//                FeedReaderContract.FeedEntry.COLUMN_NAME_SUBTITLE + " DESC";
+
+//        cursor = db.query(
+//                FeedReaderContract.FeedEntry.TABLE_NAME, // the table to query
+//                projection,           //The array of columns to return ( pass null to get everything)
+//                selection,            // The columns for the WHERE clause
+//                selectionArgs,        // The values for the WHERE clause
+//                null,        // dont group the rows
+//                null,         // dont filter by row groups
+//                sortOrder            // The sort order
+//        );
+
+
+
     }
 
     private void setSpinnerOnItemSelected(final Spinner spinner) {
@@ -438,7 +472,8 @@ public class MainActivity extends AppCompatActivity implements
         notificationManager.notify(1, weatherNotification);
     }
 
-    //-- Database handling classes/methods
+
+
 
 
 

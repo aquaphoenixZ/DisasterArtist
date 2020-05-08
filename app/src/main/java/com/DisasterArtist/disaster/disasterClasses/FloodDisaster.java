@@ -3,10 +3,12 @@ package com.DisasterArtist.disaster.disasterClasses;
 import android.os.Bundle;
 
 import com.DisasterArtist.disaster.DisasterActivity;
+import com.DisasterArtist.disaster.FeedReaderContract;
 import com.DisasterArtist.disaster.R;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FloodDisaster extends DisasterParent{
 
@@ -21,11 +23,12 @@ public class FloodDisaster extends DisasterParent{
     public ArrayList<String> populateTips(){
         //TODO Populate all the tips for flood
 
+
         ArrayList<String> tips = new ArrayList<>();
 
-        tips.add("Don't freak out, place your sandbags around your house.");
-        tips.add("Cut electricity in case the water gets to the wall outputs");
-        tips.add("Call emergency");
+        tips.add("Avoid closed underground spaces as much as possible");
+        tips.add("Seal off windows/doors that might flood the establishment if left unchecked");
+        tips.add("If possible, find shelter in a tall building, ideally on a rooftop");
 
         return tips;
     }
@@ -35,9 +38,9 @@ public class FloodDisaster extends DisasterParent{
 
         ArrayList<String> checkList = new ArrayList<>();
 
-        checkList.add("Buy sandbags");
-        checkList.add("Cut the electricity");
-        checkList.add("Buy a canoe");
+        checkList.add("Make sure to have sandbags to seal off doors");
+        checkList.add("Make sure to have adequate footwear (Rain and/or high boots)");
+        checkList.add("Make sure to not leave too many electronics, or anything susceptible to flood damage underground.");
 
         return checkList;
     }

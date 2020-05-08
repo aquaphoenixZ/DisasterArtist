@@ -1,6 +1,9 @@
 package com.DisasterArtist.disaster;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.provider.BaseColumns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +24,35 @@ import com.DisasterArtist.disaster.disasterClasses.PandemicDisaster;
 import com.DisasterArtist.disaster.disasterClasses.Thunderstorm;
 
 public class CheckListFrag extends Fragment{
+
+//    DatabaseHelper disasterDb = new DatabaseHelper(getActivity());
+//    SQLiteDatabase db = disasterDb.getReadableDatabase();
+//
+//    //-- Defining a projection
+//
+//    String[] projection = {
+//            BaseColumns._ID,
+//            FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE,
+//            FeedReaderContract.FeedEntry.COLUMN_NAME_SUBTITLE,
+//    };
+//
+//    //Filter Results WHERE "title" = 'My Title'
+//    String selection = FeedReaderContract.FeedEntry.COLUMN_NAME_SUBTITLE + " = ?";
+//    String[] selectionArgs = { "My Title"};
+//
+//    // How you want the results to be sorted in the cursor.
+//    String sortOrder =
+//            FeedReaderContract.FeedEntry.COLUMN_NAME_SUBTITLE + " DESC";
+//    Cursor cursor = db.query(
+//            FeedReaderContract.FeedEntry.TABLE_NAME, // the table to query
+//            projection,           //The array of columns to return ( pass null to get everything)
+//            selection,            // The columns for the WHERE clause
+//            selectionArgs,        // The values for the WHERE clause
+//            null,        // dont group the rows
+//            null,         // dont filter by row groups
+//            sortOrder            // The sort order
+//    );
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

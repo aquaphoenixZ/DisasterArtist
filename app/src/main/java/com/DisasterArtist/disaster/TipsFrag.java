@@ -1,7 +1,10 @@
 package com.DisasterArtist.disaster;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.provider.BaseColumns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +27,40 @@ import com.DisasterArtist.disaster.disasterClasses.NuclearDisaster;
 import com.DisasterArtist.disaster.disasterClasses.PandemicDisaster;
 import com.DisasterArtist.disaster.disasterClasses.Thunderstorm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TipsFrag extends Fragment{
+
+//    DatabaseHelper disasterDb = new DatabaseHelper(getActivity());
+//    SQLiteDatabase db = disasterDb.getReadableDatabase();
+//
+//    //-- Defining a projection
+//
+//    String[] projection = {
+//            BaseColumns._ID,
+//            FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE,
+//            FeedReaderContract.FeedEntry.COLUMN_NAME_SUBTITLE,
+//    };
+//
+//    //Filter Results WHERE "title" = 'My Title'
+//    String selection = FeedReaderContract.FeedEntry.COLUMN_NAME_SUBTITLE + " = ? ";
+//    String[] selectionArgs = { "My Title"};
+//
+//    // How you want the results to be sorted in the cursor.
+//    String sortOrder =
+//            FeedReaderContract.FeedEntry.COLUMN_NAME_SUBTITLE + " DESC";
+//    Cursor cursor = db.query(
+//    FeedReaderContract.FeedEntry.TABLE_NAME, // the table to query
+//    projection,           //The array of columns to return ( pass null to get everything)
+//    selection,            // The columns for the WHERE clause
+//    selectionArgs,        // The values for the WHERE clause
+//            null,        // dont group the rows
+//            null,         // dont filter by row groups
+//    sortOrder            // The sort order
+//        );
+
+
 
 
     @Nullable
@@ -51,6 +87,7 @@ public class TipsFrag extends Fragment{
     }
 
     private void androidTips(View v) {
+        int id = 8;
         ListView androidTip = v.findViewById(R.id.tipsListView);
         AndroidDisaster fd = new AndroidDisaster();
 
@@ -63,6 +100,7 @@ public class TipsFrag extends Fragment{
     }
 
     private void pandemicTips(View v) {
+        int id = 7;
         ListView pandemic = v.findViewById(R.id.tipsListView);
         PandemicDisaster fd = new PandemicDisaster();
 
@@ -123,7 +161,6 @@ public class TipsFrag extends Fragment{
     }
 
     public void fireTips(View v){
-
         //TODO This is dummy information
         ListView fireTipsList = v.findViewById(R.id.tipsListView);
         FireDisaster fd = new FireDisaster();
@@ -137,7 +174,6 @@ public class TipsFrag extends Fragment{
     }
 
     public void floodTips(View v){
-
         ListView floodTipsList = v.findViewById(R.id.tipsListView);
         FloodDisaster fd = new FloodDisaster();
 
@@ -147,6 +183,14 @@ public class TipsFrag extends Fragment{
         ArrayAdapter<String>listAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, fd.getDisasterTips() );
 
         floodTipsList.setAdapter(listAdapter);
+
+//        ArrayList itemIds = new ArrayList<>();
+//        while (cursor.moveToNext()){
+//            long itemId = cursor.getLong(
+//
+//                    cursor.getColumnIndexOrThrow(FeedReaderContract.FeedEntry._ID));
+//
+//        }
 
     }
 }
